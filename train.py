@@ -1,3 +1,5 @@
+import time
+from tqdm import tqdm
 from config import *
 from label_generation import id2label_dict, label2id_dict
 from VQADataset import VQADataset
@@ -41,10 +43,10 @@ test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 
 # Load the model
-model = ViltForQuestionAnswering.from_pretrained(,
-                                                 num_labels=len(id2label_dict),
-                                                 id2label=id2label_dict,
-                                                 label2id=label2id_dict)
+# model = ViltForQuestionAnswering.from_pretrained(model_name,
+                                                #  num_labels=len(id2label_dict),
+                                                #  id2label=id2label_dict,
+                                                #  label2id=label2id_dict)
 
 
 # Set the optimizer and learning rate
@@ -60,9 +62,13 @@ for epoch in range(num_epochs):
 
     # Initialize the total loss for this epoch
     total_loss = 0
-
+    num_data = 0
+    # Wrap the train_dataloader with tqdm
+    # train_dataloader_with_progress = tqdm(train_dataloader, desc=f"Epoch {epoch+1}/{num_epochs}", ncols=100)
+    num_batch = len(train_dataloader)
+    t1 = time.time()
     # Iterate over the batches in the train_dataloader
-    for batch in train_dataloader:
+    for idx, batch in enumerate(train_dataloader):
         # Move the batch to the device
         batch = {key: value.to(device) for key, value in batch.items()}
 
@@ -82,7 +88,14 @@ for epoch in range(num_epochs):
         optimizer.step()
 
         # Accumulate the total loss for this epoch
+        # num_data += (idx+1)*batch_size
         total_loss += loss.item()
+        average_loss = total_loss / (idx+1)
+        # train_dataloader_with_progress.set_postfix(
+        #     {"Avg Loss": average_loss:.4f})
+        elapsed = int(time.time() - t1)
+        eta = int(elapsed / (idx+1) * (num_batch-(idx+1)))
+        print(f"Epoch: {epoch+1} Progress: [{idx+1}/{num_batch}] Running Loss: {average_loss:.4f} Time: {elapsed}s ETA: {eta} s", end="\r")
 
     # Calculate the average loss for this epoch
     average_loss = total_loss / len(train_dataloader)
@@ -98,7 +111,7 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             train_preds.extend(predicted_labels.cpu().tolist())
             train_labels.extend(batch['labels'].cpu().tolist())
-    train_f1 = f1_score(train_labels, train_preds, average='macro')  # Use 'micro' or 'weighted' as needed
+    train_acc = accuracy(train_labels, train_preds, average='macro')  # Use 'micro' or 'weighted' as needed
 
     # Calculate F1 score on the validation dataset
     val_preds = []
@@ -110,7 +123,7 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             val_preds.extend(predicted_labels.cpu().tolist())
             val_labels.extend(batch['labels'].cpu().tolist())
-    val_f1 = f1_score(val_labels, val_preds, average='macro')  # Use 'micro' or 'weighted' as needed
+    val_acc = accuracy(val_labels, val_preds, average='macro')  # Use 'micro' or 'weighted' as needed
 
     # Calculate F1 score on the test dataset
     test_preds = []
@@ -122,11 +135,11 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             test_preds.extend(predicted_labels.cpu().tolist())
             test_labels.extend(batch['labels'].cpu().tolist())
-    test_f1 = f1_score(test_labels, test_preds, average='macro')  # Use 'micro' or 'weighted' as needed
+    test_f1 = accuracy(test_labels, test_preds, average='macro')  # Use 'micro' or 'weighted' as needed
 
     # Print metrics for this epoch
     print(f"Epoch {epoch+1}/{num_epochs}, Average Loss: {average_loss:.4f}")
-    print(f"Train F1 Score: {train_f1:.4f}, Validation F1 Score: {val_f1:.4f}, Test F1 Score: {test_f1:.4f}")
+    print(f"Train F1 Score: {train_acc:.4f}, Validation F1 Score: {val_acc:.4f}, Test F1 Score: {test_acc:.4f}")
 
 # Save the model
 torch.save(model.state_dict(), "saved_model.pth")

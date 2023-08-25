@@ -12,11 +12,8 @@ class VQADataset(torch.utils.data.Dataset):
     # def __init__(self, questions, annotations, processor):
         self.df = df
         self.questions = df['question']
-        print(self.questions)
         self.annotations = df['answer']
-        print(self.annotations)
         self.labels = df['label']
-        print(self.labels)
         self.processor = processor
         self.tokenizer = tokenizer
 
@@ -28,10 +25,8 @@ class VQADataset(torch.utils.data.Dataset):
         annotation = self.annotations[idx]
         questions = self.questions[idx]
         img_id = self.df['image'][idx]
-        #print(img_id)
-        image = Image.open(f"vqa_data/{img_id}")
+        image = Image.open(f"{data_dir}/vqa_data/{img_id}")
         labels = self.labels[idx]
-        #image.resize((128, 128))
         text = questions
         targets = torch.zeros(len(id2label_dict))
         targets[labels-1] = 1
@@ -46,7 +41,4 @@ class VQADataset(torch.utils.data.Dataset):
         #print(tokens)
 
         encoding["labels"] = targets
-        #encoding["labels"] = torch.tensor(encoding["labels"])
-        #encoding["labels"] = encoding["labels"].view(3129)
-        #print(tokens)
         return encoding
