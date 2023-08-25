@@ -5,6 +5,7 @@ config = ViltConfig.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
 from transformers import BertTokenizer, ViltProcessor
 from sklearn import metrics
 from sklearn.metrics import accuracy_score as accuracy
+from torch.cuda.amp import autocast, GradScaler
 
 
 SEED = 2022
