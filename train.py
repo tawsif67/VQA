@@ -8,10 +8,12 @@ from transformers import ViltForQuestionAnswering
 import torch
 from torch.utils.data import DataLoader, random_split
 from transformers import ViltProcessor
+import wandb
 
-# Assuming you have already defined your 'df', 'processor', 'tokenizer', 'VQADataset', and other variables
 
-# Load the model
+wandb.init(project="VQA", settings=wandb.Settings(start_method='fork'))
+wandb.run.name= model_name
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-mlm",
                                                  num_labels=len(id2label_dict),
@@ -96,7 +98,7 @@ for epoch in range(num_epochs):
         elapsed = int(time.time() - t1)
         eta = int(elapsed / (idx+1) * (num_batch-(idx+1)))
         print(f"Epoch: {epoch+1} Progress: [{idx+1}/{num_batch}] Running Loss: {average_loss:.4f} Time: {elapsed}s ETA: {eta} s", end="\r")
-
+        wandb.log({"Running Train Loss": average_loss, "Epoch": epoch})
     # Calculate the average loss for this epoch
     average_loss = total_loss / len(train_dataloader)
 
@@ -111,8 +113,8 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             train_preds.extend(predicted_labels.cpu().tolist())
             train_labels.extend(batch['labels'].cpu().tolist())
-    train_acc = accuracy(train_labels, train_preds, average='macro')  # Use 'micro' or 'weighted' as needed
-
+    train_acc = accuracy(train_labels, train_preds)  # Use 'micro' or 'weighted' as needed
+    wandb.log({'Train Accuracy': train_acc, "Epoch":epoch})
     # Calculate F1 score on the validation dataset
     val_preds = []
     val_labels = []
@@ -123,8 +125,8 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             val_preds.extend(predicted_labels.cpu().tolist())
             val_labels.extend(batch['labels'].cpu().tolist())
-    val_acc = accuracy(val_labels, val_preds, average='macro')  # Use 'micro' or 'weighted' as needed
-
+    val_acc = accuracy(val_labels, val_preds)  # Use 'micro' or 'weighted' as needed
+    wandb.log({'Validation Accuracy': train_acc, "Epoch":epoch})
     # Calculate F1 score on the test dataset
     test_preds = []
     test_labels = []
@@ -135,7 +137,7 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             test_preds.extend(predicted_labels.cpu().tolist())
             test_labels.extend(batch['labels'].cpu().tolist())
-    test_f1 = accuracy(test_labels, test_preds, average='macro')  # Use 'micro' or 'weighted' as needed
+    test_acc = accuracy(test_labels, test_preds)  # Use 'micro' or 'weighted' as needed
 
     # Print metrics for this epoch
     print(f"Epoch {epoch+1}/{num_epochs}, Average Loss: {average_loss:.4f}")
