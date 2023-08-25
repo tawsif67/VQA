@@ -111,7 +111,7 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             train_preds.extend(predicted_labels.cpu().tolist())
             train_labels.extend(batch['labels'].cpu().tolist())
-    train_acc = accuracy(train_labels, train_preds)  # Use 'micro' or 'weighted' as needed
+    train_acc = accuracy(train_labels, train_preds, average='macro')  # Use 'micro' or 'weighted' as needed
 
     # Calculate F1 score on the validation dataset
     val_preds = []
@@ -123,7 +123,7 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             val_preds.extend(predicted_labels.cpu().tolist())
             val_labels.extend(batch['labels'].cpu().tolist())
-    val_acc = accuracy(val_labels, val_preds)  # Use 'micro' or 'weighted' as needed
+    val_acc = accuracy(val_labels, val_preds, average='macro')  # Use 'micro' or 'weighted' as needed
 
     # Calculate F1 score on the test dataset
     test_preds = []
