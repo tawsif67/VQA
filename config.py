@@ -18,5 +18,6 @@ df = pd.read_csv(f'{data_dir}/output.csv')
 questions = df['question']
 annotations = df['answer']
 labels = df['label']
-batch_size = 16
+batch_size = 24
 num_epochs = 15
+learning_rate = 1e-3

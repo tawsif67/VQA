@@ -36,9 +36,9 @@ train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, va
                                                         generator=torch.Generator().manual_seed(SEED))
 
 
-train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
-test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
+test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
 
 
 
@@ -50,7 +50,7 @@ test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 
 # Set the optimizer and learning rate
-optimizer = torch.optim.AdamW(model.parameters(), lr=1e-5)
+optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
 
 # Set the loss function
 loss_fn = torch.nn.CrossEntropyLoss()
@@ -111,7 +111,7 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             train_preds.extend(predicted_labels.cpu().tolist())
             train_labels.extend(batch['labels'].cpu().tolist())
-    train_acc = accuracy(train_labels, train_preds, average='macro')  # Use 'micro' or 'weighted' as needed
+    train_acc = accuracy(train_labels, train_preds)  # Use 'micro' or 'weighted' as needed
 
     # Calculate F1 score on the validation dataset
     val_preds = []
@@ -123,7 +123,7 @@ for epoch in range(num_epochs):
             _, predicted_labels = torch.max(outputs.logits, dim=1)
             val_preds.extend(predicted_labels.cpu().tolist())
             val_labels.extend(batch['labels'].cpu().tolist())
-    val_acc = accuracy(val_labels, val_preds, average='macro')  # Use 'micro' or 'weighted' as needed
+    val_acc = accuracy(val_labels, val_preds)  # Use 'micro' or 'weighted' as needed
 
     # Calculate F1 score on the test dataset
     test_preds = []
@@ -139,7 +139,7 @@ for epoch in range(num_epochs):
 
     # Print metrics for this epoch
     print(f"Epoch {epoch+1}/{num_epochs}, Average Loss: {average_loss:.4f}")
-    print(f"Train F1 Score: {train_acc:.4f}, Validation F1 Score: {val_acc:.4f}, Test F1 Score: {test_acc:.4f}")
+    print(f"Train Accuracy: {train_acc:.4f}, Validation F1 Score: {val_acc:.4f}, Test F1 Score: {test_acc:.4f}")
 
 # Save the model
 torch.save(model.state_dict(), "saved_model.pth")
