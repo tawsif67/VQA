@@ -28,6 +28,9 @@ processor = ViltProcessor.from_pretrained("dandelin/vilt-b32-mlm")
 dataset = VQADataset(df=df,
                      processor=processor, tokenizer=tokenizer)
 
+labels = torch.nonzero(dataset[0]['labels']).squeeze().tolist()
+print(f'labels: {labels}')
+
 # Split the dataset
 dataset_size = len(dataset)
 train_size = int(0.8 * dataset_size)
