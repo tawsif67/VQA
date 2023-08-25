@@ -30,7 +30,8 @@ train_size = int(0.8 * dataset_size)
 val_size = (dataset_size - train_size) // 2
 test_size = dataset_size - train_size - val_size
 
-train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
+train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size], 
+                                                        generator=torch.Generator().manual_seed(SEED))
 
 
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)

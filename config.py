@@ -5,6 +5,7 @@ from transformers import BertTokenizer
 from sklearn.metrics import f1_score
 
 
+SEED = 2022
 processor = ViltProcessor.from_pretrained("dandelin/vilt-b32-mlm")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Initialize the tokenizer
