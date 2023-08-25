@@ -130,6 +130,3 @@ for epoch in range(num_epochs):
 
 # Save the model
 torch.save(model.state_dict(), "saved_model.pth")
-
-
-

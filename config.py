@@ -2,7 +2,8 @@ import pandas as pd
 from transformers import ViltConfig
 config = ViltConfig.from_pretrained("dandelin/vilt-b32-finetuned-vqa")
 from transformers import BertTokenizer
-from sklearn.metrics import f1_score
+from sklearn import metrics
+from sklearn.metrics import accuracy
 
 
 SEED = 2022
