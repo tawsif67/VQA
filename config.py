@@ -11,7 +11,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model_name = "dasndelin/vilt-b32-mlm"
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 csv_file_path = '/content'
-df = pd.read_csv('/content/output.csv')
+df = pd.read_csv(f'{csv_file_path}/output.csv')
 questions = df['question']
 #print(questions)
 annotations = df['answer']
