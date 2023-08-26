@@ -20,4 +20,4 @@ annotations = df['answer']
 labels = df['label']
 batch_size = 32
 num_epochs = 15
-learning_rate = 5e-3
+learning_rate = 3e-4
