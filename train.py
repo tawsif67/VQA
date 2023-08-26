@@ -31,7 +31,7 @@ dataset = VQADataset(df=df,
 
 # Split the dataset
 dataset_size = len(dataset)
-train_size = int(0.80 * dataset_size)
+train_size = int(0.8 * dataset_size)
 val_size = (dataset_size - train_size) // 2
 test_size = dataset_size - train_size - val_size
 
@@ -57,6 +57,8 @@ for epoch in range(num_epochs):
     num_data = 0
     num_batch = len(train_dataloader)
     t1 = time.time()
+    train_preds = []
+    train_labels = []
     # Iterate over the batches in the train_dataloader
     for idx, batch in enumerate(train_dataloader):
         batch = {key: value.to(device) for key, value in batch.items()}
@@ -64,6 +66,10 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()
         # Forward pass
         outputs = model(**batch)
+        _, predicted_labels = torch.max(outputs.logits, dim=1)
+        _, actual_labels = torch.max(batch['labels'], dim=1)
+        train_preds.extend(predicted_labels.cpu().tolist())
+        train_labels.extend(actual_labels.cpu().tolist())
         # Compute the loss
         loss = loss_fn(outputs.logits, batch['labels'])
         # Backward pass
@@ -74,26 +80,16 @@ for epoch in range(num_epochs):
         average_loss = total_loss / (idx+1)
         elapsed = int(time.time() - t1)
         eta = int(elapsed / (idx+1) * (num_batch-(idx+1)))
-        print(f"Epoch: {epoch+1} Progress: [{idx+1}/{num_batch}] Running Loss: {average_loss:.4f} Time: {elapsed}s ETA: {eta} s", end="\r")
+        print(f"Train Epoch: {epoch+1} Progress: [{idx+1}/{num_batch}] Running Loss: {average_loss:.4f} Time: {elapsed}s ETA: {eta} s", end="\r")
         wandb.log({"Running Train Loss": average_loss, "Epoch": epoch})
     # Calculate the average loss for this epoch
     average_loss = total_loss / len(train_dataloader)
 
-    # Calculate F1 score on the train dataset
     model.eval()
-    train_preds = []
-    train_labels = []
-    with torch.no_grad():
-        for batch in train_dataloader:
-            batch = {key: value.to(device) for key, value in batch.items()}
-            outputs = model(**batch)
-            _, predicted_labels = torch.max(outputs.logits, dim=1)
-            _, actual_labels = torch.max(batch['labels'], dim=1)
-            train_preds.extend(predicted_labels.cpu().tolist())
-            train_labels.extend(actual_labels.cpu().tolist())
+            
     train_acc = accuracy(train_labels, train_preds)  # Use 'micro' or 'weighted' as needed
     wandb.log({'Train Accuracy': train_acc, "Epoch":epoch})
-    # Calculate F1 score on the validation dataset
+    # Calculate Accuracy on the validation dataset
     val_preds = []
     val_labels = []
     with torch.no_grad():
@@ -105,23 +101,26 @@ for epoch in range(num_epochs):
             val_preds.extend(predicted_labels.cpu().tolist())
             val_labels.extend(actual_labels.cpu().tolist())
     val_acc = accuracy(val_labels, val_preds, )  # Use 'micro' or 'weighted' as needed
-    wandb.log({'Validation Accuracy': train_acc, "Epoch":epoch})
-    # Calculate F1 score on the test dataset
-    test_preds = []
-    test_labels = []
-    with torch.no_grad():
-        for batch in test_dataloader:
-            batch = {key: value.to(device) for key, value in batch.items()}
-            outputs = model(**batch)
-            _, predicted_labels = torch.max(outputs.logits, dim=1)
-            _, actual_labels = torch.max(batch['labels'], dim=1)
-            test_preds.extend(predicted_labels.cpu().tolist())
-            test_labels.extend(actual_labels.cpu().tolist())
-    test_acc = accuracy(test_labels, test_preds)  # Use 'micro' or 'weighted' as needed
+    wandb.log({'Validation Accuracy': val_acc, "Epoch":epoch})
 
-    # Print metrics for this epoch
-    print(f"Epoch {epoch+1}/{num_epochs}, Average Loss: {average_loss:.4f}")
-    print(f"Train Accuracy: {train_acc:.4f}, Validation F1 Score: {val_acc:.4f}, Test F1 Score: {test_acc:.4f}")
+
+# Calculate Accuracy on the test dataset
+test_preds = []
+test_labels = []
+with torch.no_grad():
+    for batch in test_dataloader:
+        batch = {key: value.to(device) for key, value in batch.items()}
+        outputs = model(**batch)
+        _, predicted_labels = torch.max(outputs.logits, dim=1)
+        _, actual_labels = torch.max(batch['labels'], dim=1)
+        test_preds.extend(predicted_labels.cpu().tolist())
+        test_labels.extend(actual_labels.cpu().tolist())
+test_acc = accuracy(test_labels, test_preds)  # Use 'micro' or 'weighted' as needed
+wandb.log({'Test Accuracy': test_acc})
+
+# Print metrics for this epoch
+print(f"Epoch {epoch+1}/{num_epochs}, Average Loss: {average_loss:.4f}")
+print(f"Train Accuracy: {train_acc:.4f}, Validation Accuracy: {val_acc:.4f}, Test Accuracy: {test_acc:.4f}")
 
 # Save the model
 torch.save(model.state_dict(), "saved_model.pth")
