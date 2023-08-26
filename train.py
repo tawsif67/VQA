@@ -29,12 +29,9 @@ processor = ViltProcessor.from_pretrained("dandelin/vilt-b32-mlm")
 dataset = VQADataset(df=df,
                      processor=processor, tokenizer=tokenizer)
 
-labels = torch.nonzero(dataset[0]['labels']).squeeze().tolist()
-print(f'labels: {labels}')
-
 # Split the dataset
 dataset_size = len(dataset)
-train_size = int(0.05 * dataset_size)
+train_size = int(0.80 * dataset_size)
 val_size = (dataset_size - train_size) // 2
 test_size = dataset_size - train_size - val_size
 
@@ -91,8 +88,9 @@ for epoch in range(num_epochs):
             batch = {key: value.to(device) for key, value in batch.items()}
             outputs = model(**batch)
             _, predicted_labels = torch.max(outputs.logits, dim=1)
+            _, actual_labels = torch.max(batch['labels'], dim=1)
             train_preds.extend(predicted_labels.cpu().tolist())
-            train_labels.extend(batch['labels'].cpu().tolist())
+            train_labels.extend(actual_labels.cpu().tolist())
     train_acc = accuracy(train_labels, train_preds)  # Use 'micro' or 'weighted' as needed
     wandb.log({'Train Accuracy': train_acc, "Epoch":epoch})
     # Calculate F1 score on the validation dataset
@@ -103,8 +101,9 @@ for epoch in range(num_epochs):
             batch = {key: value.to(device) for key, value in batch.items()}
             outputs = model(**batch)
             _, predicted_labels = torch.max(outputs.logits, dim=1)
+            _, actual_labels = torch.max(batch['labels'], dim=1)
             val_preds.extend(predicted_labels.cpu().tolist())
-            val_labels.extend(batch['labels'].cpu().tolist())
+            val_labels.extend(actual_labels.cpu().tolist())
     val_acc = accuracy(val_labels, val_preds, )  # Use 'micro' or 'weighted' as needed
     wandb.log({'Validation Accuracy': train_acc, "Epoch":epoch})
     # Calculate F1 score on the test dataset
@@ -115,8 +114,9 @@ for epoch in range(num_epochs):
             batch = {key: value.to(device) for key, value in batch.items()}
             outputs = model(**batch)
             _, predicted_labels = torch.max(outputs.logits, dim=1)
+            _, actual_labels = torch.max(batch['labels'], dim=1)
             test_preds.extend(predicted_labels.cpu().tolist())
-            test_labels.extend(batch['labels'].cpu().tolist())
+            test_labels.extend(actual_labels.cpu().tolist())
     test_acc = accuracy(test_labels, test_preds)  # Use 'micro' or 'weighted' as needed
 
     # Print metrics for this epoch

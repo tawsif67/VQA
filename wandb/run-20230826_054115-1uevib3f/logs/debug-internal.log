@@ -1,0 +1,167 @@
+2023-08-26 05:41:15,569 INFO    StreamThr :7026 [internal.py:wandb_internal():86] W&B internal server running at pid: 7026, started at: 2023-08-26 05:41:15.565066
+2023-08-26 05:41:15,593 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status
+2023-08-26 05:41:15,598 INFO    WriterThread:7026 [datastore.py:open_for_write():85] open: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/run-1uevib3f.wandb
+2023-08-26 05:41:15,602 DEBUG   SenderThread:7026 [sender.py:send():379] send: header
+2023-08-26 05:41:15,614 DEBUG   SenderThread:7026 [sender.py:send():379] send: run
+2023-08-26 05:41:16,684 INFO    SenderThread:7026 [dir_watcher.py:__init__():211] watching files in: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files
+2023-08-26 05:41:16,685 INFO    SenderThread:7026 [sender.py:_start_run_threads():1121] run started: 1uevib3f with start time 1693006875.562577
+2023-08-26 05:41:16,686 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:16,688 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:16,707 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: check_version
+2023-08-26 05:41:16,708 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: check_version
+2023-08-26 05:41:17,004 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: run_start
+2023-08-26 05:41:17,073 DEBUG   HandlerThread:7026 [system_info.py:__init__():31] System info init
+2023-08-26 05:41:17,073 DEBUG   HandlerThread:7026 [system_info.py:__init__():46] System info init done
+2023-08-26 05:41:17,074 INFO    HandlerThread:7026 [system_monitor.py:start():181] Starting system monitor
+2023-08-26 05:41:17,075 INFO    HandlerThread:7026 [system_monitor.py:probe():201] Collecting system info
+2023-08-26 05:41:17,075 INFO    SystemMonitor:7026 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-08-26 05:41:17,081 INFO    SystemMonitor:7026 [interfaces.py:start():190] Started cpu monitoring
+2023-08-26 05:41:17,086 INFO    SystemMonitor:7026 [interfaces.py:start():190] Started disk monitoring
+2023-08-26 05:41:17,090 INFO    SystemMonitor:7026 [interfaces.py:start():190] Started gpu monitoring
+2023-08-26 05:41:17,093 INFO    SystemMonitor:7026 [interfaces.py:start():190] Started memory monitoring
+2023-08-26 05:41:17,101 INFO    SystemMonitor:7026 [interfaces.py:start():190] Started network monitoring
+2023-08-26 05:41:17,121 DEBUG   HandlerThread:7026 [system_info.py:probe():195] Probing system
+2023-08-26 05:41:17,266 DEBUG   HandlerThread:7026 [system_info.py:_probe_git():180] Probing git
+2023-08-26 05:41:17,291 DEBUG   HandlerThread:7026 [system_info.py:_probe_git():188] Probing git done
+2023-08-26 05:41:17,291 DEBUG   HandlerThread:7026 [system_info.py:probe():240] Probing system done
+2023-08-26 05:41:17,292 DEBUG   HandlerThread:7026 [system_monitor.py:probe():210] {'os': 'Linux-5.15.79.1-microsoft-standard-WSL2+-x86_64-with-glibc2.17', 'python': '3.8.16', 'heartbeatAt': '2023-08-25T23:41:17.121580', 'startedAt': '2023-08-25T23:41:15.542367', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/tahsin/VQA/train.py', 'codePath': 'train.py', 'git': {'remote': 'https://github.com/tawsif67/VQA.git', 'commit': '9ac4ac8e99efaf58c05c39c65f18495b522000c3'}, 'email': 'tahsinmostafiz314@gmail.com', 'root': '/home/tahsin/VQA', 'host': 'Tahsin', 'username': 'tahsin', 'executable': '/home/tahsin/miniconda3/envs/tahsin/bin/python', 'cpu_count': 8, 'cpu_count_logical': 16, 'cpu_freq': {'current': 2303.999, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}, {'current': 2303.999, 'min': 0.0, 'max': 0.0}], 'disk': {'total': 1006.853931427002, 'used': 47.51649475097656}, 'gpu': 'NVIDIA GeForce RTX 3070 Laptop GPU', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3070 Laptop GPU', 'memory_total': 8589934592}], 'memory': {'total': 7.633098602294922}}
+2023-08-26 05:41:17,292 INFO    HandlerThread:7026 [system_monitor.py:probe():211] Finished collecting system info
+2023-08-26 05:41:17,292 INFO    HandlerThread:7026 [system_monitor.py:probe():214] Publishing system info
+2023-08-26 05:41:17,293 DEBUG   HandlerThread:7026 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-08-26 05:41:17,295 DEBUG   HandlerThread:7026 [system_info.py:_save_pip():67] Saving pip packages done
+2023-08-26 05:41:17,295 DEBUG   HandlerThread:7026 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-08-26 05:41:17,691 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/requirements.txt
+2023-08-26 05:41:17,692 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/conda-environment.yaml
+2023-08-26 05:41:17,692 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:19,682 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:41:19,683 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:41:25,638 DEBUG   HandlerThread:7026 [system_info.py:_save_conda():86] Saving conda packages done
+2023-08-26 05:41:25,641 INFO    HandlerThread:7026 [system_monitor.py:probe():216] Finished publishing system info
+2023-08-26 05:41:25,646 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:41:25,646 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: keepalive
+2023-08-26 05:41:25,648 DEBUG   SenderThread:7026 [sender.py:send():379] send: files
+2023-08-26 05:41:25,648 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-metadata.json with policy now
+2023-08-26 05:41:25,673 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:41:25,675 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:41:25,693 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/conda-environment.yaml
+2023-08-26 05:41:25,694 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-metadata.json
+2023-08-26 05:41:26,140 DEBUG   SenderThread:7026 [sender.py:send():379] send: telemetry
+2023-08-26 05:41:26,141 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:41:26,142 DEBUG   SenderThread:7026 [sender.py:send():379] send: telemetry
+2023-08-26 05:41:26,143 DEBUG   SenderThread:7026 [sender.py:send():379] send: run
+2023-08-26 05:41:26,458 INFO    SenderThread:7026 [sender.py:send_run():999] updated run: 1uevib3f
+2023-08-26 05:41:26,693 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/config.yaml
+2023-08-26 05:41:26,860 INFO    wandb-upload_0:7026 [upload_job.py:push():131] Uploaded file /tmp/tmptofsidhxwandb/2jarh9nu-wandb-metadata.json
+2023-08-26 05:41:27,695 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_created():271] file/dir created: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:29,696 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:31,666 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:41:32,700 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:36,669 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:41:37,489 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:37,494 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:37,495 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:37,503 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:37,705 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:38,706 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:38,864 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:38,866 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:38,867 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:38,868 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:39,707 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:40,214 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:40,217 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:40,218 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:40,226 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:40,672 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:41:40,674 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:41:40,708 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:40,709 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:41,578 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:41,581 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:41,582 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:41,583 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:41,709 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:42,585 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:41:42,710 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:42,933 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:42,935 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:42,935 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:42,936 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:43,710 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:44,263 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:44,265 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:44,266 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:44,266 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:44,711 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:44,713 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:45,611 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:45,613 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:45,614 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:45,615 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:45,712 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:46,716 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:46,946 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:46,949 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:46,949 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:46,950 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:47,718 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:47,957 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:41:48,355 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:48,357 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:48,358 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:48,359 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:48,731 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:48,732 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:48,733 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/config.yaml
+2023-08-26 05:41:49,687 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: partial_history
+2023-08-26 05:41:49,691 DEBUG   SenderThread:7026 [sender.py:send():379] send: history
+2023-08-26 05:41:49,692 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: summary_record
+2023-08-26 05:41:49,694 INFO    SenderThread:7026 [sender.py:_save_file():1375] saving file wandb-summary.json with policy end
+2023-08-26 05:41:49,734 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/wandb-summary.json
+2023-08-26 05:41:50,735 INFO    Thread-17 :7026 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/tahsin/VQA/wandb/run-20230826_054115-1uevib3f/files/output.log
+2023-08-26 05:41:53,697 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:41:55,674 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:41:55,676 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:41:59,082 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:02,647 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:02,648 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:04,084 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:09,087 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:10,672 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:42:10,673 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:42:15,034 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:15,277 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:15,278 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:17,103 DEBUG   SystemMonitor:7026 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-08-26 05:42:17,109 DEBUG   SenderThread:7026 [sender.py:send():379] send: stats
+2023-08-26 05:42:20,111 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:25,113 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:25,676 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:42:25,677 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:42:31,088 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:33,969 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:33,970 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:36,090 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:40,676 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:42:40,679 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:42:42,037 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:46,595 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:46,595 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:47,039 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:47,111 DEBUG   SenderThread:7026 [sender.py:send():379] send: stats
+2023-08-26 05:42:52,115 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:55,677 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:42:55,679 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:42:58,091 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:42:59,253 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:42:59,254 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:43:03,093 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:43:08,097 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:43:10,678 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: stop_status
+2023-08-26 05:43:10,680 DEBUG   SenderThread:7026 [sender.py:send_request():406] send_request: stop_status
+2023-08-26 05:43:14,044 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:43:15,905 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:43:15,923 ERROR   gpu       :7026 [interfaces.py:monitor():144] Failed to sample metric: No data
+2023-08-26 05:43:17,115 DEBUG   SenderThread:7026 [sender.py:send():379] send: stats
+2023-08-26 05:43:19,118 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report
+2023-08-26 05:43:24,121 DEBUG   HandlerThread:7026 [handler.py:handle_request():144] handle_request: status_report

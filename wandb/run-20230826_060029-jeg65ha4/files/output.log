@@ -1,0 +1,59 @@
+Some weights of the model checkpoint at dandelin/vilt-b32-mlm were not used when initializing ViltForQuestionAnswering: ['mlm_score.transform.dense.bias', 'mlm_score.bias', 'mlm_score.transform.LayerNorm.weight', 'mlm_score.transform.LayerNorm.bias', 'mlm_score.decoder.weight', 'mlm_score.transform.dense.weight']
+- This IS expected if you are initializing ViltForQuestionAnswering from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing ViltForQuestionAnswering from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of ViltForQuestionAnswering were not initialized from the model checkpoint at dandelin/vilt-b32-mlm and are newly initialized: ['classifier.1.weight', 'classifier.3.bias', 'classifier.3.weight', 'classifier.1.bias', 'classifier.0.bias', 'classifier.0.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

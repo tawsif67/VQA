@@ -9,5 +9,4 @@ This is where magic happens
 - After training, run `inference.py`
 
 # Future plans
-- Training progress bar with loss value
-- Adding Weight and Bias
+- Mixed Precision
