@@ -29,11 +29,11 @@ class VQADataset(torch.utils.data.Dataset):
         text = questions
 
         # One-hot encode the labels
-        targets = torch.zeros(self.num_labels)
+        #targets = torch.zeros(self.num_labels)
+        targets = torch.zeros(len(config.id2label))
         targets[labels-1] = 1
 
         encoding = self.processor(image, text, padding="max_length", truncation=True, return_tensors="pt")
-        
         # remove batch dimension
         for k,v in encoding.items():
             encoding[k] = v.squeeze()
@@ -41,4 +41,5 @@ class VQADataset(torch.utils.data.Dataset):
         tokens = self.tokenizer.tokenize(annotation)
         
         encoding["labels"] = targets
+        print(labels)
         return encoding
