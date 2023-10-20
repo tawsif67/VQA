@@ -31,7 +31,7 @@ class VQADataset(torch.utils.data.Dataset):
         # One-hot encode the labels
         #targets = torch.zeros(self.num_labels)
         targets = torch.zeros(len(id2label_dict))
-        targets[labels-1] = 1
+        targets[labels-1] = 1 
 
         encoding = self.processor(image, text, padding="max_length", truncation=True, return_tensors="pt")
         # remove batch dimension

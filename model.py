@@ -8,8 +8,7 @@ from transformers import ViltProcessor
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model = ViltForQuestionAnswering.from_pretrained(model_name,
-                                                 num_labels=len(id2label_dict),
-                                                 id2label=id2label_dict,
-                                                 label2id=label2id_dict)
+model = ViltForQuestionAnswering.from_pretrained("dandelin/vilt-b32-mlm",
+                                                 id2label=config.id2label,
+                                                 label2id=config.label2id)
 model.to(device)
