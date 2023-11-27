@@ -24,7 +24,7 @@ class VQADataset(torch.utils.data.Dataset):
         annotation = self.annotations[idx]
         questions = self.questions[idx]
         img_id = self.df['image'][idx]
-        image = Image.open(f"{data_dir}/vqa_data/{img_id}")
+        image = Image.open(f"{data_dir}/vqa_data_final/{img_id}")
         labels = self.labels[idx]
         text = questions
 
