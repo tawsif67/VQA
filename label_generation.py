@@ -4,7 +4,7 @@ import csv
 def create_dictionary_from_csv(data_dir):
     result_dict = {}
     label2id_dict= {}
-    with open(f"{data_dir}/output.csv", 'r') as file:
+    with open(f"{data_dir}/input.csv", 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             label = int(row['label'])
@@ -16,7 +16,7 @@ def create_dictionary_from_csv(data_dir):
 def label2id(data_dir):
     result_dict = {}
     label2id_dict= {}
-    with open(f"{data_dir}/output.csv", 'r') as file:
+    with open(f"{data_dir}/input.csv", 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             label = int(row['label'])
